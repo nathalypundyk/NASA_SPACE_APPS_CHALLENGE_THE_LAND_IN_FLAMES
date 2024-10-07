@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Banner-Heading-Image.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+    
+    <style>
+        /* Asegura que el iframe cubra todo el fondo */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-background iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Sin borde */
+        }
+
+        /* Estilo del contenedor del botón */
+        .centered-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            display: none; /* Ocultamos el botón inicialmente */
+        }
+    </style>
+</head>
+
+<body style="background: rgb(0,0,0);">
+    <!-- Video de fondo -->
+    <div class="video-background">
+        <iframe id="background-video" src="https://www.youtube.com/embed/nKPWLHS-Mb0?autoplay=1&enablejsapi=1" allowfullscreen></iframe>
+    </div>
+
+    <!-- Botón START centrado (oculto inicialmente) -->
+    <div class="centered-button" id="start-button">
+        <a class="btn btn-primary btn-xl rounded-pill" role="button" href="/untitled.html" style="background: rgb(238,9,9);font-size: 36.4px;font-family: Amaranth, sans-serif;">START</a>
+    </div>
+
+    <script>
+        // Cargar la API de YouTube
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('background-video', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            // Verificamos si el video ha terminado
+            if (event.data === YT.PlayerState.ENDED) {
+                document.getElementById('start-button').style.display = 'block'; // Mostrar el botón al terminar el video
+            }
+        }
+    </script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+</body>
+
+</html>
